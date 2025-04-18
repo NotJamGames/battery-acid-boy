@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgcxuvtciqd7a"]
+
+[ext_resource type="Texture2D" uid="uid://clr306r5imwao" path="res://World/Sprites/pool.png" id="1_sokt1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qu5ka"]
+size = Vector2(24, 16)
+
+[node name="Pool" type="Area2D"]
+texture_filter = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(14, 10)
+shape = SubResource("RectangleShape2D_qu5ka")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sokt1")
+centered = false

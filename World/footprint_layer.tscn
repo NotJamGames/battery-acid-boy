@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bci7slf8woga3"]
+
+[ext_resource type="Script" path="res://World/footprint_layer.gd" id="1_bppdm"]
+
+[node name="FootprintLayer" type="Sprite2D"]
+centered = false
+script = ExtResource("1_bppdm")

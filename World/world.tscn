@@ -1,9 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://crtgsw8ylq6js"]
+[gd_scene load_steps=4 format=3 uid="uid://crtgsw8ylq6js"]
 
+[ext_resource type="PackedScene" uid="uid://bci7slf8woga3" path="res://World/footprint_layer.tscn" id="1_05shr"]
 [ext_resource type="PackedScene" uid="uid://bax4i8c8of5pe" path="res://Player/player.tscn" id="1_dx7y5"]
+[ext_resource type="PackedScene" uid="uid://cgcxuvtciqd7a" path="res://World/pool.tscn" id="1_nxnf8"]
 
 [node name="World" type="Node2D"]
 texture_filter = 1
 
+[node name="FootprintLayer" parent="." instance=ExtResource("1_05shr")]
+
+[node name="Pool" parent="." instance=ExtResource("1_nxnf8")]
+position = Vector2(48, 52)
+
 [node name="Player" parent="." instance=ExtResource("1_dx7y5")]
-position = Vector2(56, 56)
+position = Vector2(59, 57)
+
+[connection signal="body_entered" from="Pool" to="Player" method="set_is_in_pool" binds= [true]]
+[connection signal="body_exited" from="Pool" to="Player" method="set_is_in_pool" binds= [false]]
+[connection signal="place_print" from="Player" to="FootprintLayer" method="add_footprint"]
