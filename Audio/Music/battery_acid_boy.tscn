@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://2s707w2vghte"]
+
+[ext_resource type="AudioStream" uid="uid://bnqik0jpkbr81" path="res://Audio/Music/battery_acid_boy.ogg" id="1_spsay"]
+
+[node name="BatteryAcidBoy" type="AudioStreamPlayer"]
+stream = ExtResource("1_spsay")
+volume_db = -4.0
+autoplay = true
