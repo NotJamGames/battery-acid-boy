@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=3 uid="uid://bax4i8c8of5pe"]
+
+[ext_resource type="Texture2D" uid="uid://g1h2vm5yahpx" path="res://Player/Sprites/player.png" id="1_b75cl"]
+[ext_resource type="Script" path="res://Player/player.gd" id="1_d0j3i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fnnm"]
+size = Vector2(3, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpoih"]
+atlas = ExtResource("1_b75cl")
+region = Rect2(0, 0, 7, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4i17r"]
+atlas = ExtResource("1_b75cl")
+region = Rect2(7, 0, 7, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1sa3"]
+atlas = ExtResource("1_b75cl")
+region = Rect2(14, 0, 7, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfuee"]
+atlas = ExtResource("1_b75cl")
+region = Rect2(7, 0, 7, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqjd5"]
+atlas = ExtResource("1_b75cl")
+region = Rect2(21, 0, 7, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cxilm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpoih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4i17r")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_q1sa3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfuee")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_lqjd5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfuee")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 12.0
+}]
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite")]
+texture_filter = 1
+script = ExtResource("1_d0j3i")
+animated_sprite = NodePath("AnimatedSprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.5, 5.5)
+shape = SubResource("RectangleShape2D_5fnnm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cxilm")
+animation = &"Run"
+autoplay = "Idle"
+frame_progress = 0.0413589
+centered = false
