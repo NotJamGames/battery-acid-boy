@@ -3,9 +3,10 @@ extends CharacterBody2D
 
 
 @export var animated_sprite : AnimatedSprite2D
+@export var footsteps : AudioStreamPlayer
 
 const SPEED : float = 48.0
-const MAX_PRINTS : int = 12
+const MAX_PRINTS : int = 18
 
 var is_in_pool : bool = true
 var prints_placed : int = 0
@@ -33,8 +34,12 @@ func set_is_in_pool(body : Node2D, new_state : bool) -> void:
 
 
 func place_footprint() -> void:
-	if is_in_pool or animated_sprite.animation != "Run" \
+	if animated_sprite.animation != "Run" \
 	or (animated_sprite.frame != 1 and animated_sprite.frame != 3): return
+
+	footsteps.play()
+
+	if is_in_pool: return
 
 	var print_position : Vector2i = \
 			Vector2i(position) + Vector2i(4, 6)
