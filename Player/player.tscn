@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://bax4i8c8of5pe"]
+[gd_scene load_steps=16 format=3 uid="uid://bax4i8c8of5pe"]
 
 [ext_resource type="Texture2D" uid="uid://g1h2vm5yahpx" path="res://Player/Sprites/player.png" id="1_b75cl"]
 [ext_resource type="Script" path="res://Player/player.gd" id="1_d0j3i"]
 [ext_resource type="AudioStream" uid="uid://ciwffjvg7f1mo" path="res://Audio/SFX/footstep_0.wav" id="3_1kh4x"]
 [ext_resource type="AudioStream" uid="uid://71ofrq1ul6wo" path="res://Audio/SFX/footstep_1.wav" id="4_cv7uu"]
 [ext_resource type="AudioStream" uid="uid://cp2qb0sm1jl01" path="res://Audio/SFX/footstep_2.wav" id="5_e2qq6"]
+[ext_resource type="AudioStream" uid="uid://doj82r14ff10a" path="res://Audio/SFX/death.wav" id="6_44ij3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5fnnm"]
 size = Vector2(3, 5)
@@ -52,7 +53,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.5,
@@ -79,11 +80,12 @@ stream_0/stream = ExtResource("3_1kh4x")
 stream_1/stream = ExtResource("4_cv7uu")
 stream_2/stream = ExtResource("5_e2qq6")
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "footsteps")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "footsteps", "death_sfx")]
 texture_filter = 1
 script = ExtResource("1_d0j3i")
 animated_sprite = NodePath("AnimatedSprite2D")
 footsteps = NodePath("Footsteps")
+death_sfx = NodePath("Death")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(3.5, 5.5)
@@ -91,12 +93,16 @@ shape = SubResource("RectangleShape2D_5fnnm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_cxilm")
-animation = &"Dead"
+animation = &"Idle"
 autoplay = "Idle"
 centered = false
 
 [node name="Footsteps" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_2tplo")
 volume_db = -12.0
+
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_44ij3")
+volume_db = -8.0
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="place_footprint"]

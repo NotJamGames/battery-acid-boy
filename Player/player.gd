@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 @export var animated_sprite : AnimatedSprite2D
 @export var footsteps : AudioStreamPlayer
+@export var death_sfx : AudioStreamPlayer
 
 const SPEED : float = 48.0
 const MAX_PRINTS : int = 18
@@ -72,4 +73,5 @@ func place_footprint() -> void:
 func die() -> void:
 	set_physics_process(false)
 	animated_sprite.play("Dead")
+	death_sfx.play()
 	died.emit()
