@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://crtgsw8ylq6js"]
+[gd_scene load_steps=11 format=3 uid="uid://crtgsw8ylq6js"]
 
 [ext_resource type="PackedScene" uid="uid://bci7slf8woga3" path="res://World/footprint_layer.tscn" id="1_05shr"]
 [ext_resource type="Script" path="res://World/world.gd" id="1_bdbfs"]
 [ext_resource type="PackedScene" uid="uid://bax4i8c8of5pe" path="res://Player/player.tscn" id="1_dx7y5"]
 [ext_resource type="PackedScene" uid="uid://cgcxuvtciqd7a" path="res://World/pool.tscn" id="1_nxnf8"]
+[ext_resource type="PackedScene" uid="uid://cnrqb71ukd7c3" path="res://Enemies/projectile_spawner.tscn" id="4_ngufk"]
 [ext_resource type="PackedScene" uid="uid://cmqtxulfuo7ep" path="res://Enemies/enemy_spawner.tscn" id="4_qybwj"]
 [ext_resource type="PackedScene" uid="uid://tr77atqcg10r" path="res://Enemies/ghost.tscn" id="5_5efe3"]
 [ext_resource type="PackedScene" uid="uid://y5n7g0uu56l2" path="res://UI/ui.tscn" id="5_f8a2x"]
@@ -22,6 +23,8 @@ script = ExtResource("1_bdbfs")
 
 [node name="Pool" parent="." instance=ExtResource("1_nxnf8")]
 position = Vector2(48, 52)
+
+[node name="ProjectileSpawner" parent="." instance=ExtResource("4_ngufk")]
 
 [node name="EnemySpawner" parent="." instance=ExtResource("4_qybwj")]
 
@@ -70,5 +73,6 @@ shape = SubResource("RectangleShape2D_mle7r")
 [connection signal="body_exited" from="Pool" to="Player" method="set_is_in_pool" binds= [false]]
 [connection signal="died" from="Player" to="UI" method="set_alive" binds= [false]]
 [connection signal="health_updated" from="Player" to="UI" method="update_health_bar"]
+[connection signal="max_health_updated" from="Player" to="UI" method="update_max_health"]
 [connection signal="place_print" from="Player" to="FootprintLayer" method="add_footprint"]
 [connection signal="restart_requested" from="UI" to="." method="restart_game"]

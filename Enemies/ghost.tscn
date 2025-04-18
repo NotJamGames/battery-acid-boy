@@ -52,5 +52,5 @@ script = ExtResource("1_6kije")
 sprite_frames = SubResource("SpriteFrames_impql")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.0337884
+frame_progress = 0.0466935
 centered = false

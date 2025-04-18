@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnrqb71ukd7c3"]
+
+[ext_resource type="Script" path="res://Enemies/projectile_spawner.gd" id="1_lbngh"]
+[ext_resource type="PackedScene" uid="uid://cth4pb6p02yp6" path="res://Enemies/projectile.tscn" id="2_q2q5e"]
+
+[node name="ProjectileSpawner" type="Node2D"]
+script = ExtResource("1_lbngh")
+projectile_resource = ExtResource("2_q2q5e")

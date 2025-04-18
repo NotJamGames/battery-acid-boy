@@ -19,6 +19,11 @@ func _process(delta : float) -> void:
 	score_label.text = "%05d" % int(current_score)
 
 
+func update_max_health(new_max_health : float) -> void:
+	health_bar.size.x = new_max_health
+	health_bar.max_value = new_max_health
+
+
 func update_health_bar(new_value : float) -> void:
 	health_bar.value = new_value
 

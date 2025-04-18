@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 @export var animated_sprite : AnimatedSprite2D
 @export var footsteps : AudioStreamPlayer
+@export var hurt_sfx : AudioStreamPlayer
 @export var death_sfx : AudioStreamPlayer
 
 const SPEED : float = 48.0
@@ -19,7 +20,10 @@ var current_health : float = 112.0
 var health_decrease_rate : float = 6.0
 var health_increase_rate : float = 18.0
 
+var invulnerable : bool = false
+
 signal health_updated()
+signal max_health_updated()
 signal died()
 
 
@@ -29,6 +33,7 @@ func _physics_process(delta : float) -> void:
 			Input.get_axis("move_up", "move_down")).normalized() * SPEED
 
 	move_and_slide()
+	Global.player_position = position
 
 	if velocity.is_zero_approx():
 		animated_sprite.play("Idle")
@@ -68,6 +73,21 @@ func place_footprint() -> void:
 
 	place_print.emit(print_position, print_strength)
 	prints_placed += 1
+
+
+func hit() -> void:
+	if invulnerable: return
+	invulnerable = true
+	get_tree().create_timer(.12).timeout.connect\
+			(set.bind("invulnerable", false))
+
+	hurt_sfx.play()
+
+	max_health -= 8.0
+	max_health_updated.emit(max_health)
+	current_health = minf(current_health, max_health)
+	health_updated.emit(current_health)
+	if is_zero_approx(current_health): die()
 
 
 func die() -> void:
