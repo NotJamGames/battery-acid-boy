@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://crtgsw8ylq6js"]
+[gd_scene load_steps=7 format=3 uid="uid://crtgsw8ylq6js"]
 
 [ext_resource type="PackedScene" uid="uid://bci7slf8woga3" path="res://World/footprint_layer.tscn" id="1_05shr"]
 [ext_resource type="PackedScene" uid="uid://bax4i8c8of5pe" path="res://Player/player.tscn" id="1_dx7y5"]
 [ext_resource type="PackedScene" uid="uid://cgcxuvtciqd7a" path="res://World/pool.tscn" id="1_nxnf8"]
 [ext_resource type="AudioStream" uid="uid://bnqik0jpkbr81" path="res://Audio/Music/battery_acid_boy.ogg" id="4_sr0wg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgp3n"]
+size = Vector2(8, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mle7r"]
+size = Vector2(120, 8)
 
 [node name="World" type="Node2D"]
 texture_filter = 1
@@ -20,6 +26,30 @@ position = Vector2(59, 57)
 stream = ExtResource("4_sr0wg")
 volume_db = -4.0
 autoplay = true
+
+[node name="LeftWall" type="StaticBody2D" parent="."]
+position = Vector2(-4, 60)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
+shape = SubResource("RectangleShape2D_hgp3n")
+
+[node name="RightWall" type="StaticBody2D" parent="."]
+position = Vector2(124, 60)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
+shape = SubResource("RectangleShape2D_hgp3n")
+
+[node name="TopWall" type="StaticBody2D" parent="."]
+position = Vector2(60, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
+shape = SubResource("RectangleShape2D_mle7r")
+
+[node name="BottomWall" type="StaticBody2D" parent="."]
+position = Vector2(60, 116)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall"]
+shape = SubResource("RectangleShape2D_mle7r")
 
 [connection signal="body_entered" from="Pool" to="Player" method="set_is_in_pool" binds= [true]]
 [connection signal="body_exited" from="Pool" to="Player" method="set_is_in_pool" binds= [false]]
