@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://crtgsw8ylq6js"]
+[gd_scene load_steps=9 format=3 uid="uid://crtgsw8ylq6js"]
 
 [ext_resource type="PackedScene" uid="uid://bci7slf8woga3" path="res://World/footprint_layer.tscn" id="1_05shr"]
+[ext_resource type="Script" path="res://World/world.gd" id="1_bdbfs"]
 [ext_resource type="PackedScene" uid="uid://bax4i8c8of5pe" path="res://Player/player.tscn" id="1_dx7y5"]
 [ext_resource type="PackedScene" uid="uid://cgcxuvtciqd7a" path="res://World/pool.tscn" id="1_nxnf8"]
 [ext_resource type="AudioStream" uid="uid://bnqik0jpkbr81" path="res://Audio/Music/battery_acid_boy.ogg" id="4_sr0wg"]
+[ext_resource type="PackedScene" uid="uid://y5n7g0uu56l2" path="res://UI/ui.tscn" id="5_f8a2x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hgp3n"]
 size = Vector2(8, 120)
@@ -13,6 +15,7 @@ size = Vector2(120, 8)
 
 [node name="World" type="Node2D"]
 texture_filter = 1
+script = ExtResource("1_bdbfs")
 
 [node name="FootprintLayer" parent="." instance=ExtResource("1_05shr")]
 
@@ -51,6 +54,11 @@ position = Vector2(60, 116)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall"]
 shape = SubResource("RectangleShape2D_mle7r")
 
+[node name="UI" parent="." instance=ExtResource("5_f8a2x")]
+
 [connection signal="body_entered" from="Pool" to="Player" method="set_is_in_pool" binds= [true]]
 [connection signal="body_exited" from="Pool" to="Player" method="set_is_in_pool" binds= [false]]
+[connection signal="died" from="Player" to="UI" method="set_alive" binds= [false]]
+[connection signal="health_updated" from="Player" to="UI" method="update_health_bar"]
 [connection signal="place_print" from="Player" to="FootprintLayer" method="add_footprint"]
+[connection signal="restart_requested" from="UI" to="." method="restart_game"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bax4i8c8of5pe"]
+[gd_scene load_steps=15 format=3 uid="uid://bax4i8c8of5pe"]
 
 [ext_resource type="Texture2D" uid="uid://g1h2vm5yahpx" path="res://Player/Sprites/player.png" id="1_b75cl"]
 [ext_resource type="Script" path="res://Player/player.gd" id="1_d0j3i"]
@@ -8,6 +8,10 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5fnnm"]
 size = Vector2(3, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsiij"]
+atlas = ExtResource("1_b75cl")
+region = Rect2(28, 0, 7, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qpoih"]
 atlas = ExtResource("1_b75cl")
@@ -31,6 +35,14 @@ region = Rect2(21, 0, 7, 10)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cxilm"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsiij")
+}],
+"loop": true,
+"name": &"Dead",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qpoih")
@@ -79,9 +91,8 @@ shape = SubResource("RectangleShape2D_5fnnm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_cxilm")
-animation = &"Run"
+animation = &"Dead"
 autoplay = "Idle"
-frame_progress = 0.754966
 centered = false
 
 [node name="Footsteps" type="AudioStreamPlayer" parent="."]

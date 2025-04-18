@@ -13,8 +13,16 @@ var prints_placed : int = 0
 
 signal place_print()
 
+var max_health : float = 112.0
+var current_health : float = 112.0
+var health_decrease_rate : float = 6.0
+var health_increase_rate : float = 18.0
 
-func _physics_process(_delta : float) -> void:
+signal health_updated()
+signal died()
+
+
+func _physics_process(delta : float) -> void:
 	velocity = Vector2\
 			(Input.get_axis("move_left", "move_right"),
 			Input.get_axis("move_up", "move_down")).normalized() * SPEED
@@ -25,6 +33,17 @@ func _physics_process(_delta : float) -> void:
 		animated_sprite.play("Idle")
 	else:
 		animated_sprite.play("Run")
+
+	if is_in_pool:
+		current_health = minf\
+				(current_health + (health_increase_rate * delta), max_health)
+	else:
+		current_health = clampf\
+				(current_health - (health_decrease_rate * delta),
+				.0, max_health)
+		if is_zero_approx(current_health): die()
+
+	health_updated.emit(current_health)
 
 
 func set_is_in_pool(body : Node2D, new_state : bool) -> void:
@@ -48,3 +67,9 @@ func place_footprint() -> void:
 
 	place_print.emit(print_position, print_strength)
 	prints_placed += 1
+
+
+func die() -> void:
+	set_physics_process(false)
+	animated_sprite.play("Dead")
+	died.emit()
