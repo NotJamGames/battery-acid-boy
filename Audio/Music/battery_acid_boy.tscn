@@ -4,5 +4,4 @@
 
 [node name="BatteryAcidBoy" type="AudioStreamPlayer"]
 stream = ExtResource("1_spsay")
-volume_db = -4.0
 autoplay = true

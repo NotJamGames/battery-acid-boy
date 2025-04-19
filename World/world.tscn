@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://crtgsw8ylq6js"]
+[gd_scene load_steps=12 format=3 uid="uid://crtgsw8ylq6js"]
 
 [ext_resource type="PackedScene" uid="uid://bci7slf8woga3" path="res://World/footprint_layer.tscn" id="1_05shr"]
 [ext_resource type="Script" path="res://World/world.gd" id="1_bdbfs"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cmqtxulfuo7ep" path="res://Enemies/enemy_spawner.tscn" id="4_qybwj"]
 [ext_resource type="PackedScene" uid="uid://tr77atqcg10r" path="res://Enemies/ghost.tscn" id="5_5efe3"]
 [ext_resource type="PackedScene" uid="uid://y5n7g0uu56l2" path="res://UI/ui.tscn" id="5_f8a2x"]
+[ext_resource type="PackedScene" uid="uid://cim2oas630w04" path="res://Enemies/wizard.tscn" id="7_616r0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hgp3n"]
 size = Vector2(8, 120)
@@ -34,11 +35,29 @@ position = Vector2(4, 11)
 [node name="Ghost3" parent="EnemySpawner" instance=ExtResource("5_5efe3")]
 position = Vector2(111, 98)
 
+[node name="Wizard" parent="EnemySpawner" instance=ExtResource("7_616r0")]
+position = Vector2(59, 28)
+
 [node name="Ghost2" parent="EnemySpawner" instance=ExtResource("5_5efe3")]
 position = Vector2(111, 11)
 
 [node name="Ghost4" parent="EnemySpawner" instance=ExtResource("5_5efe3")]
 position = Vector2(4, 98)
+
+[node name="Wizard2" parent="EnemySpawner" instance=ExtResource("7_616r0")]
+position = Vector2(59, 86)
+
+[node name="Ghost5" parent="EnemySpawner" instance=ExtResource("5_5efe3")]
+position = Vector2(4, 73)
+
+[node name="Wizard3" parent="EnemySpawner" instance=ExtResource("7_616r0")]
+position = Vector2(27, 57)
+
+[node name="Ghost6" parent="EnemySpawner" instance=ExtResource("5_5efe3")]
+position = Vector2(111, 37)
+
+[node name="Wizard4" parent="EnemySpawner" instance=ExtResource("7_616r0")]
+position = Vector2(90, 57)
 
 [node name="Player" parent="." instance=ExtResource("1_dx7y5")]
 position = Vector2(59, 57)

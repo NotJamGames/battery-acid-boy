@@ -8,14 +8,15 @@ var enabled : bool = false
 func set_enabled(new_state : bool) -> void:
 	enabled = new_state
 	if new_state:
-		flash(7)
-		attack()
+		flash(9)
 	else:
 		visible = false
 
 
 func flash(max_iterations : int, current_iteration : int = 0) -> void:
-	if current_iteration == max_iterations: return
+	if current_iteration == max_iterations:
+		attack()
+		return
 
 	visible = not visible
 

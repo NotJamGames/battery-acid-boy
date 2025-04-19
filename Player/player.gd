@@ -17,8 +17,8 @@ signal place_print()
 
 var max_health : float = 112.0
 var current_health : float = 112.0
-var health_decrease_rate : float = 6.0
-var health_increase_rate : float = 18.0
+var health_decrease_rate : float = 12.0
+var health_increase_rate : float = 36.0
 
 var invulnerable : bool = false
 

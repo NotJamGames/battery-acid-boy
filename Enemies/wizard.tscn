@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://cim2oas630w04"]
+
+[ext_resource type="Script" path="res://Enemies/wizard.gd" id="1_v3gtg"]
+[ext_resource type="Texture2D" uid="uid://dagy7ll3c7nmg" path="res://Enemies/Sprites/wizard.png" id="2_fmpm2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2w0t4"]
+atlas = ExtResource("2_fmpm2")
+region = Rect2(0, 0, 7, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p40jb"]
+atlas = ExtResource("2_fmpm2")
+region = Rect2(7, 0, 7, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8802"]
+atlas = ExtResource("2_fmpm2")
+region = Rect2(14, 0, 7, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4sx5"]
+atlas = ExtResource("2_fmpm2")
+region = Rect2(21, 0, 7, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_40wr1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2w0t4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p40jb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8802")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4sx5")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="Wizard" type="Node2D"]
+script = ExtResource("1_v3gtg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_40wr1")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.668817
+centered = false
